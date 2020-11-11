@@ -1,0 +1,481 @@
+******************************************************************************
+                  TI ARM Linker PC v18.12.6                    
+******************************************************************************
+>> Linked Mon Sep 28 03:43:39 2020
+
+OUTPUT FILE NAME:   <esp8266-server.out>
+ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 0000188d
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  MAIN                  00000000   00040000  00001aa8  0003e558  R  X
+  INFO                  00200000   00004000  00000000  00004000  R  X
+  SRAM_CODE             01000000   00010000  0000142e  0000ebd2  RW X
+  SRAM_DATA             20000000   00010000  0000142e  0000ebd2  RW  
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    00001aa8   00001aa8    r-x
+  00000000    00000000    000000e4   000000e4    r-- .intvecs
+  000000e4    000000e4    00001854   00001854    r-x .text
+  00001938    00001938    00000138   00000138    r-- .const
+  00001a70    00001a70    00000038   00000038    r-- .cinit
+20000000    20000000    00001030   00000000    rw-
+  20000000    20000000    0000101e   00000000    rw- .bss
+  20001020    20001020    00000010   00000000    rw- .data
+2000fc00    2000fc00    00000400   00000000    rw-
+  2000fc00    2000fc00    00000400   00000000    rw- .stack
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    000000e4     
+                  00000000    000000e4     startup_msp432p401r_ccs.obj (.intvecs:retain)
+
+.text      0    000000e4    00001854     
+                  000000e4    0000075c     server_main.obj (.text)
+                  00000840    0000071c     ESP8266.obj (.text)
+                  00000f5c    00000334     system_msp432p401r.obj (.text)
+                  00001290    00000222     MSPIO.obj (.text)
+                  000014b2    00000002     --HOLE-- [fill = 0]
+                  000014b4    000001c8     UART_Driver.obj (.text)
+                  0000167c    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.asm.obj (.text)
+                  00001718    0000007a                                   : memset_t2.asm.obj (.text)
+                  00001792    00000068                                   : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  000017fa    00000002     --HOLE-- [fill = 0]
+                  000017fc    0000004c                                   : atoi.c.obj (.text:atoi)
+                  00001848    00000044                                   : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit:__TI_auto_init_nobinit_nopinit)
+                  0000188c    00000034                                   : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
+                  000018c0    00000034                                   : strstr.c.obj (.text:strstr)
+                  000018f4    00000014                                   : strlen.c.obj (.text:strlen)
+                  00001908    0000000e                                   : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  00001916    0000000e     startup_msp432p401r_ccs.obj (.text)
+                  00001924    0000000c     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init)
+                  00001930    00000004                                   : pre_init.c.obj (.text:_system_pre_init)
+                  00001934    00000004                                   : exit.c.obj (.text:abort:abort)
+
+.const     0    00001938    00000138     
+                  00001938    00000101     rtsv7M4_T_le_v4SPD16_eabi.lib : ctype.c.obj (.const:.string:_ctypes_)
+                  00001a39    0000000e     server_main.obj (.const:.string:station_IP)
+                  00001a47    0000000b     server_main.obj (.const:.string:ssid)
+                  00001a52    00000009     server_main.obj (.const:.string:pwd)
+                  00001a5b    00000009     server_main.obj (.const:.string:router_pwd)
+                  00001a64    00000009     server_main.obj (.const:.string:router_ssid)
+                  00001a6d    00000003     server_main.obj (.const:.string:port)
+
+.cinit     0    00001a70    00000038     
+                  00001a70    00000014     (.cinit..data.load) [load image, compression = lzss]
+                  00001a84    0000000c     (__TI_handler_table)
+                  00001a90    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  00001a98    00000010     (__TI_cinit_table)
+
+.init_array 
+*          0    00000000    00000000     UNINITIALIZED
+
+.binit     0    00000000    00000000     
+
+.bss       0    20000000    0000101e     UNINITIALIZED
+                  20000000    00000800     (.common:ESP8266_Buffer)
+                  20000800    00000800     (.common:UART_DATA)
+                  20001000    00000008     (.common:name)
+                  20001008    00000008     (.common:value_buff)
+                  20001010    00000004     (.common:esp866_data)
+                  20001014    00000004     (.common:uart_head)
+                  20001018    00000004     (.common:uart_tail)
+                  2000101c    00000002     (.common:value1)
+
+.data      0    20001020    00000010     UNINITIALIZED
+                  20001020    0000000c     server_main.obj (.data)
+                  2000102c    00000004     system_msp432p401r.obj (.data)
+
+.stack     0    2000fc00    00000400     UNINITIALIZED
+                  2000fc00    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.stack)
+                  2000fc04    000003fc     --HOLE--
+
+MODULE SUMMARY
+
+       Module                        code   ro data   rw data
+       ------                        ----   -------   -------
+    .\
+       server_main.obj               1884   55        68     
+       system_msp432p401r.obj        820    0         8      
+       startup_msp432p401r_ccs.obj   14     228       0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        2718   283       76     
+                                                             
+    .\Devices\
+       ESP8266.obj                   1820   0         4096   
+       MSPIO.obj                     546    0         0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        2366   0         4096   
+                                                             
+    .\Hardware\
+       UART_Driver.obj               456    0         4112   
+    +--+-----------------------------+------+---------+---------+
+       Total:                        456    0         4112   
+                                                             
+    C:\ti\ccsv8\tools\compiler\ti-cgt-arm_18.12.6.LTS\lib\rtsv7M4_T_le_v4SPD16_eabi.lib
+       ctype.c.obj                   0      257       0      
+       memcpy_t2.asm.obj             156    0         0      
+       memset_t2.asm.obj             122    0         0      
+       copy_decompress_lzss.c.obj    104    0         0      
+       atoi.c.obj                    76     0         0      
+       autoinit.c.obj                68     0         0      
+       boot_cortex_m.c.obj           52     0         0      
+       strstr.c.obj                  52     0         0      
+       strlen.c.obj                  20     0         0      
+       copy_decompress_none.c.obj    14     0         0      
+       copy_zero_init.c.obj          12     0         0      
+       exit.c.obj                    4      0         0      
+       pre_init.c.obj                4      0         0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        684    257       0      
+                                                             
+       Stack:                        0      0         2048   
+       Linker Generated:             0      56        0      
+    +--+-----------------------------+------+---------+---------+
+       Grand Total:                  6224   596       10332  
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 00001a98 records: 2, size/record: 8, table size: 16
+	.data: load addr=00001a70, load size=00000014 bytes, run addr=20001020, run size=00000010 bytes, compression=lzss
+	.bss: load addr=00001a90, load size=00000008 bytes, run addr=20000000, run size=0000101e bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 00001a84 records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_decompress_lzss
+	index: 1, handler: __TI_decompress_none
+	index: 2, handler: __TI_zero_init
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                             
+-------   ----                             
+00001923  ADC14_IRQHandler                 
+00001923  AES256_IRQHandler                
+00001923  BusFault_Handler                 
+00001935  C$$EXIT                          
+00001923  COMP_E0_IRQHandler               
+00001923  COMP_E1_IRQHandler               
+00001923  CS_IRQHandler                    
+20001025  DEBUG                            
+00001923  DMA_ERR_IRQHandler               
+00001923  DMA_INT0_IRQHandler              
+00001923  DMA_INT1_IRQHandler              
+00001923  DMA_INT2_IRQHandler              
+00001923  DMA_INT3_IRQHandler              
+00001923  DebugMon_Handler                 
+00001923  Default_Handler                  
+00000951  ESP8266_AssociatedIPs            
+00000921  ESP8266_AvailableAPs             
+20000000  ESP8266_Buffer                   
+00000ec1  ESP8266_CheckAP                  
+000008ab  ESP8266_CheckConnection          
+00000981  ESP8266_ConnectToAP              
+00000a2b  ESP8266_EnableMultipleConnections
+00000aff  ESP8266_EstablishConnection      
+00000ef1  ESP8266_GetBuffer                
+00000f15  ESP8266_HardReset                
+000009ef  ESP8266_ProduceAP                
+00000e53  ESP8266_ReceiveData              
+00000b85  ESP8266_SendData                 
+000008db  ESP8266_SetMode                  
+00000abd  ESP8266_SetStaticIP              
+00000a83  ESP8266_StartServer              
+00000c0f  ESP8266_Terminal                 
+00000841  ESP8266_WaitForAnswer            
+000015f5  EUSCIA0_IRQHandler               
+000015f5  EUSCIA0_IRQHandler               
+00001923  EUSCIA1_IRQHandler               
+00001601  EUSCIA2_IRQHandler               
+00001601  EUSCIA2_IRQHandler               
+00001923  EUSCIA3_IRQHandler               
+00001923  EUSCIB0_IRQHandler               
+00001923  EUSCIB1_IRQHandler               
+00001923  EUSCIB2_IRQHandler               
+00001923  EUSCIB3_IRQHandler               
+00001923  FLCTL_IRQHandler                 
+00001923  FPU_IRQHandler                   
+00000d15  GetDataFromBuffer                
+00001923  HardFault_Handler                
+000002bd  Initialize_Esp8266               
+20001021  List_AP                          
+0000140d  MSPgets                          
+00001353  MSPrintf                         
+00001923  MemManage_Handler                
+00001923  NMI_Handler                      
+00001923  PCM_IRQHandler                   
+00001923  PORT1_IRQHandler                 
+00001923  PORT2_IRQHandler                 
+00001923  PORT3_IRQHandler                 
+00001923  PORT4_IRQHandler                 
+00001923  PORT5_IRQHandler                 
+00001923  PORT6_IRQHandler                 
+00001923  PSS_IRQHandler                   
+00001923  PendSV_Handler                   
+00001291  PrintChar                        
+000012c7  PrintInteger                     
+000012a5  PrintString                      
+00001923  RTC_C_IRQHandler                 
+00001917  Reset_Handler                    
+00001923  SVC_Handler                      
+20001022  Set_Station_IP                   
+0000058d  SysTick_Handler                  
+0000058d  SysTick_Handler                  
+2000102c  SystemCoreClock                  
+00000f5d  SystemCoreClockUpdate            
+000011d5  SystemInit                       
+20001028  Systick_Cnt                      
+00000565  Systick_Setup                    
+00001923  T32_INT1_IRQHandler              
+00001923  T32_INT2_IRQHandler              
+00001923  T32_INTC_IRQHandler              
+00001923  TA0_0_IRQHandler                 
+00001923  TA0_N_IRQHandler                 
+00001923  TA1_0_IRQHandler                 
+00001923  TA1_N_IRQHandler                 
+00001923  TA2_0_IRQHandler                 
+00001923  TA2_N_IRQHandler                 
+00001923  TA3_0_IRQHandler                 
+00001923  TA3_N_IRQHandler                 
+000015c3  UART_Available                   
+20000800  UART_DATA                        
+000015d7  UART_Flush                       
+000014b5  UART_Init                        
+0000155f  UART_Read                        
+00001525  UART_Write                       
+00001923  UsageFault_Handler               
+4000480c  WDTCTL_SYM                       
+00001923  WDT_A_IRQHandler                 
+20010000  __STACK_END                      
+00000400  __STACK_SIZE                     
+00001a98  __TI_CINIT_Base                  
+00001aa8  __TI_CINIT_Limit                 
+00001a84  __TI_Handler_Table_Base          
+00001a90  __TI_Handler_Table_Limit         
+00001849  __TI_auto_init_nobinit_nopinit   
+00001793  __TI_decompress_lzss             
+00001909  __TI_decompress_none             
+ffffffff  __TI_pprof_out_hndl              
+ffffffff  __TI_prof_data_size              
+ffffffff  __TI_prof_data_start             
+00000000  __TI_static_base__               
+00001925  __TI_zero_init                   
+00001719  __aeabi_memclr                   
+00001719  __aeabi_memclr4                  
+00001719  __aeabi_memclr8                  
+0000167d  __aeabi_memcpy                   
+0000167d  __aeabi_memcpy4                  
+0000167d  __aeabi_memcpy8                  
+0000171b  __aeabi_memset                   
+0000171b  __aeabi_memset4                  
+0000171b  __aeabi_memset8                  
+ffffffff  __binit__                        
+ffffffff  __c_args__                       
+UNDEFED   __mpu_init                       
+2000fc00  __stack                          
+0000188d  _c_int00_noargs                  
+00001938  _ctypes_                         
+UNDEFED   _system_post_cinit               
+00001931  _system_pre_init                 
+00001935  abort                            
+000017fd  atoi                             
+ffffffff  binit                            
+20001024  check_AP                         
+20001023  connection_mode                  
+00000619  delay                            
+20001010  esp866_data                      
+20001020  esp_config                       
+00000000  interruptVectors                 
+000000e5  main                             
+0000167d  memcpy                           
+00001721  memset                           
+20001000  name                             
+00001a6d  port                             
+00001a52  pwd                              
+00001a5b  router_pwd                       
+00001a64  router_ssid                      
+00000691  set3MhzClock                     
+00001a47  ssid                             
+00001a39  station_IP                       
+000018f5  strlen                           
+000018c1  strstr                           
+20001014  uart_head                        
+20001018  uart_tail                        
+2000101c  value1                           
+20001008  value_buff                       
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                             
+-------   ----                             
+00000000  __TI_static_base__               
+00000000  interruptVectors                 
+000000e5  main                             
+000002bd  Initialize_Esp8266               
+00000400  __STACK_SIZE                     
+00000565  Systick_Setup                    
+0000058d  SysTick_Handler                  
+0000058d  SysTick_Handler                  
+00000619  delay                            
+00000691  set3MhzClock                     
+00000841  ESP8266_WaitForAnswer            
+000008ab  ESP8266_CheckConnection          
+000008db  ESP8266_SetMode                  
+00000921  ESP8266_AvailableAPs             
+00000951  ESP8266_AssociatedIPs            
+00000981  ESP8266_ConnectToAP              
+000009ef  ESP8266_ProduceAP                
+00000a2b  ESP8266_EnableMultipleConnections
+00000a83  ESP8266_StartServer              
+00000abd  ESP8266_SetStaticIP              
+00000aff  ESP8266_EstablishConnection      
+00000b85  ESP8266_SendData                 
+00000c0f  ESP8266_Terminal                 
+00000d15  GetDataFromBuffer                
+00000e53  ESP8266_ReceiveData              
+00000ec1  ESP8266_CheckAP                  
+00000ef1  ESP8266_GetBuffer                
+00000f15  ESP8266_HardReset                
+00000f5d  SystemCoreClockUpdate            
+000011d5  SystemInit                       
+00001291  PrintChar                        
+000012a5  PrintString                      
+000012c7  PrintInteger                     
+00001353  MSPrintf                         
+0000140d  MSPgets                          
+000014b5  UART_Init                        
+00001525  UART_Write                       
+0000155f  UART_Read                        
+000015c3  UART_Available                   
+000015d7  UART_Flush                       
+000015f5  EUSCIA0_IRQHandler               
+000015f5  EUSCIA0_IRQHandler               
+00001601  EUSCIA2_IRQHandler               
+00001601  EUSCIA2_IRQHandler               
+0000167d  __aeabi_memcpy                   
+0000167d  __aeabi_memcpy4                  
+0000167d  __aeabi_memcpy8                  
+0000167d  memcpy                           
+00001719  __aeabi_memclr                   
+00001719  __aeabi_memclr4                  
+00001719  __aeabi_memclr8                  
+0000171b  __aeabi_memset                   
+0000171b  __aeabi_memset4                  
+0000171b  __aeabi_memset8                  
+00001721  memset                           
+00001793  __TI_decompress_lzss             
+000017fd  atoi                             
+00001849  __TI_auto_init_nobinit_nopinit   
+0000188d  _c_int00_noargs                  
+000018c1  strstr                           
+000018f5  strlen                           
+00001909  __TI_decompress_none             
+00001917  Reset_Handler                    
+00001923  ADC14_IRQHandler                 
+00001923  AES256_IRQHandler                
+00001923  BusFault_Handler                 
+00001923  COMP_E0_IRQHandler               
+00001923  COMP_E1_IRQHandler               
+00001923  CS_IRQHandler                    
+00001923  DMA_ERR_IRQHandler               
+00001923  DMA_INT0_IRQHandler              
+00001923  DMA_INT1_IRQHandler              
+00001923  DMA_INT2_IRQHandler              
+00001923  DMA_INT3_IRQHandler              
+00001923  DebugMon_Handler                 
+00001923  Default_Handler                  
+00001923  EUSCIA1_IRQHandler               
+00001923  EUSCIA3_IRQHandler               
+00001923  EUSCIB0_IRQHandler               
+00001923  EUSCIB1_IRQHandler               
+00001923  EUSCIB2_IRQHandler               
+00001923  EUSCIB3_IRQHandler               
+00001923  FLCTL_IRQHandler                 
+00001923  FPU_IRQHandler                   
+00001923  HardFault_Handler                
+00001923  MemManage_Handler                
+00001923  NMI_Handler                      
+00001923  PCM_IRQHandler                   
+00001923  PORT1_IRQHandler                 
+00001923  PORT2_IRQHandler                 
+00001923  PORT3_IRQHandler                 
+00001923  PORT4_IRQHandler                 
+00001923  PORT5_IRQHandler                 
+00001923  PORT6_IRQHandler                 
+00001923  PSS_IRQHandler                   
+00001923  PendSV_Handler                   
+00001923  RTC_C_IRQHandler                 
+00001923  SVC_Handler                      
+00001923  T32_INT1_IRQHandler              
+00001923  T32_INT2_IRQHandler              
+00001923  T32_INTC_IRQHandler              
+00001923  TA0_0_IRQHandler                 
+00001923  TA0_N_IRQHandler                 
+00001923  TA1_0_IRQHandler                 
+00001923  TA1_N_IRQHandler                 
+00001923  TA2_0_IRQHandler                 
+00001923  TA2_N_IRQHandler                 
+00001923  TA3_0_IRQHandler                 
+00001923  TA3_N_IRQHandler                 
+00001923  UsageFault_Handler               
+00001923  WDT_A_IRQHandler                 
+00001925  __TI_zero_init                   
+00001931  _system_pre_init                 
+00001935  C$$EXIT                          
+00001935  abort                            
+00001938  _ctypes_                         
+00001a39  station_IP                       
+00001a47  ssid                             
+00001a52  pwd                              
+00001a5b  router_pwd                       
+00001a64  router_ssid                      
+00001a6d  port                             
+00001a84  __TI_Handler_Table_Base          
+00001a90  __TI_Handler_Table_Limit         
+00001a98  __TI_CINIT_Base                  
+00001aa8  __TI_CINIT_Limit                 
+20000000  ESP8266_Buffer                   
+20000800  UART_DATA                        
+20001000  name                             
+20001008  value_buff                       
+20001010  esp866_data                      
+20001014  uart_head                        
+20001018  uart_tail                        
+2000101c  value1                           
+20001020  esp_config                       
+20001021  List_AP                          
+20001022  Set_Station_IP                   
+20001023  connection_mode                  
+20001024  check_AP                         
+20001025  DEBUG                            
+20001028  Systick_Cnt                      
+2000102c  SystemCoreClock                  
+2000fc00  __stack                          
+20010000  __STACK_END                      
+4000480c  WDTCTL_SYM                       
+ffffffff  __TI_pprof_out_hndl              
+ffffffff  __TI_prof_data_size              
+ffffffff  __TI_prof_data_start             
+ffffffff  __binit__                        
+ffffffff  __c_args__                       
+ffffffff  binit                            
+UNDEFED   __mpu_init                       
+UNDEFED   _system_post_cinit               
+
+[153 symbols]
